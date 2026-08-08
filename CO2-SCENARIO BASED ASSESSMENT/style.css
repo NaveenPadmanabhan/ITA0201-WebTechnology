@@ -1,0 +1,872 @@
+/* =====================================================
+   RESPONSIVE UNIVERSITY EVENT REGISTRATION PORTAL
+   External CSS
+   ===================================================== */
+
+
+/* ---------- RESET ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #172033;
+    background: #f6f8fc;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 92%;
+    max-width: 1120px;
+    margin: auto;
+}
+
+
+/* ---------- HEADER ---------- */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.header-content {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.logo p {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    color: #5b21b6;
+    letter-spacing: 1px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 17px;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+nav {
+    display: flex;
+    gap: 5px;
+}
+
+nav a {
+    padding: 9px 13px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    border-radius: 8px;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #5b21b6;
+    background: #f0ebff;
+    transform: translateY(-2px);
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero {
+    position: relative;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 58, 237, 0.3),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #151b3d,
+            #25215c,
+            #4c1d95
+        );
+
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -100px;
+    bottom: -120px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.hero-content {
+    min-height: 450px;
+
+    display: grid;
+    grid-template-columns: 1fr 300px;
+
+    align-items: center;
+
+    gap: 50px;
+
+    padding: 70px 0;
+}
+
+.hero h2 {
+    max-width: 700px;
+
+    margin: 0;
+
+    font-size: clamp(40px, 6vw, 75px);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    color: white;
+
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-highlight {
+    color: #c4b5fd;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero-description {
+    max-width: 650px;
+
+    color: #e4e7f5;
+
+    font-size: 17px;
+
+    margin: 25px 0 10px;
+}
+
+.hero-card {
+    position: relative;
+    z-index: 1;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+.hero-card span {
+    font-size: 30px;
+}
+
+.hero-card strong {
+    display: block;
+
+    font-size: 60px;
+
+    line-height: 1;
+
+    margin: 10px 0;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.btn {
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 45px;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    font: inherit;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background-color 0.2s;
+}
+
+.btn:hover,
+.btn:focus {
+    transform: translateY(-3px);
+}
+
+.primary-btn {
+    background: white;
+    color: #4c1d95;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:hover {
+    background: #f5f3ff;
+}
+
+.secondary-btn {
+    width: 100%;
+
+    background: #f1edff;
+
+    color: #5b21b6;
+}
+
+.secondary-btn:hover {
+    background: #e4dcff;
+}
+
+
+/* ---------- EVENT SECTION ---------- */
+
+.events-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    max-width: 700px;
+
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+
+    color: #7c3aed;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+}
+
+.section-title > p:last-child {
+    color: #667085;
+}
+
+
+/* ---------- EVENT GRID ---------- */
+
+.event-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* ---------- EVENT CARD ---------- */
+
+.event-card {
+    position: relative;
+
+    min-width: 0;
+
+    padding: 24px;
+
+    margin: 4px;
+
+    background: white;
+
+    border: 1px solid #e2e6ef;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(25, 40, 75, 0.08);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+.event-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 20px 40px rgba(25, 40, 75, 0.15);
+}
+
+.event-card.featured {
+    border-color: #c4b5fd;
+}
+
+
+/* Child selector */
+.event-card > .category {
+    margin-top: 0;
+}
+
+
+/* ---------- STATUS BADGE ---------- */
+
+.status {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 2;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.status.open {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.closing {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+/* ---------- EVENT ICON ---------- */
+
+.event-icon {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 12px 0 18px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede9fe,
+            #ddd6fe
+        );
+
+    color: #5b21b6;
+
+    font-size: 22px;
+}
+
+
+/* ---------- EVENT TEXT ---------- */
+
+.category {
+    color: #7c3aed;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.event-card h3 {
+    margin: 5px 0 15px;
+
+    font-size: 20px;
+
+    line-height: 1.2;
+}
+
+.event-card p:not(.category) {
+    color: #667085;
+
+    font-size: 14px;
+}
+
+
+/* ---------- EVENT DETAILS ---------- */
+
+.event-details {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0 0 15px;
+
+    color: #475467;
+
+    font-size: 13px;
+}
+
+.event-details li {
+    margin: 7px 0;
+}
+
+
+/* Attribute selector */
+a[href="#register"] {
+    cursor: pointer;
+}
+
+
+/* ---------- REGISTRATION ---------- */
+
+.registration-section {
+    padding: 80px 0;
+
+    background: #eceffd;
+}
+
+.registration-container {
+    display: grid;
+
+    grid-template-columns: 0.75fr 1.25fr;
+
+    gap: 60px;
+
+    align-items: start;
+}
+
+.registration-info h2 {
+    margin: 0;
+
+    font-size: 45px;
+
+    line-height: 1.1;
+}
+
+.registration-info::before {
+    content: "REGISTRATION";
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #7c3aed;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.note {
+    margin-top: 30px;
+
+    padding: 18px;
+
+    border-left: 4px solid #7c3aed;
+
+    border-radius: 10px;
+
+    background: white;
+
+    box-shadow: 0 8px 20px rgba(25, 40, 75, 0.06);
+}
+
+
+/* ---------- FORM ---------- */
+
+.registration-form {
+    padding: 30px;
+
+    background: white;
+
+    border: 1px solid #dde2ef;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 18px 50px rgba(25, 40, 75, 0.1);
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #172033;
+
+    font: inherit;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+/* Focus pseudo-class */
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 4px rgba(124, 58, 237, 0.12);
+
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    margin-top: 20px;
+
+    background: #5b21b6;
+
+    color: white;
+}
+
+.submit-btn:hover {
+    background: #4c1d95;
+}
+
+
+/* ---------- FIXED HELP BUTTON ---------- */
+
+.help-button {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    z-index: 150;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #7c3aed;
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(67, 56, 202, 0.3);
+
+    transition: transform 0.2s;
+}
+
+.help-button:hover {
+    transform: scale(1.1);
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    padding: 45px 0 20px;
+
+    background: #11162f;
+
+    color: #d0d5dd;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 1fr 1fr;
+
+    gap: 40px;
+
+    padding-bottom: 30px;
+}
+
+.footer-grid h3 {
+    margin: 0 0 10px;
+
+    color: white;
+}
+
+.footer-grid a {
+    display: block;
+
+    width: fit-content;
+
+    margin: 5px 0;
+
+    color: #d0d5dd;
+
+    text-decoration: none;
+}
+
+.footer-grid a:hover {
+    color: #c4b5fd;
+
+    text-decoration: underline;
+}
+
+.university-name {
+    color: #c4b5fd;
+
+    font-weight: bold;
+}
+
+.footer-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #2b324e;
+
+    font-size: 12px;
+
+    color: #98a2b3;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 1000px) {
+
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 240px;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 720px) {
+
+    header {
+        position: relative;
+    }
+
+    .header-content {
+        padding: 15px 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    nav {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    nav a {
+        text-align: center;
+
+        padding: 8px 4px;
+
+        font-size: 12px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+
+        padding: 60px 0;
+    }
+
+    .hero-card {
+        max-width: 350px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .registration-container {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+}
+
+
+/* ---------- 375px MOBILE ---------- */
+
+@media (max-width: 375px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .logo h1 {
+        font-size: 15px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+
+    .status {
+        position: static;
+
+        display: inline-block;
+
+        margin-bottom: 5px;
+    }
+
+    .registration-form {
+        padding: 20px;
+    }
+}
