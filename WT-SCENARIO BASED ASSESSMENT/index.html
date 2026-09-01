@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive University Course Registration Portal">
+  <title>SIMATS Course Registration Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+  <div class="background-orb orb-three"></div>
+
+  <header class="site-header glass">
+    <a class="brand" href="#home" aria-label="SIMATS Course Registration Portal home">
+      <img src="images/simats-logo.png" alt="SIMATS Logo" class="logo">
+      <span>
+        <strong>SIMATS</strong>
+        <small>Course Registration</small>
+      </span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#registration">Registration</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero glass">
+      <div class="hero-copy">
+        <span class="eyebrow">WEB TECHNOLOGY • ITA02</span>
+        <h1>SIMATS Course<br><span>Registration Portal</span></h1>
+        <p>
+          Explore available courses, select your subjects, and generate a
+          registration summary instantly — without reloading the page.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#registration">Register Now</a>
+          <a class="button secondary" href="#courses">View Courses</a>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <img src="images/university-logo.png" alt="University Logo" class="status-logo">
+      </div>
+    </section>
+
+    <section id="courses" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ACADEMIC CATALOG</span>
+          <h2>Available Courses</h2>
+        </div>
+        <span class="count-badge">5 Courses</span>
+      </div>
+
+      <div class="table-wrap glass">
+        <table>
+          <caption>Available university courses</caption>
+          <thead>
+            <tr>
+              <th scope="col">Course Code</th>
+              <th scope="col">Course Name</th>
+              <th scope="col">Credits</th>
+              <th scope="col">Course Type</th>
+            </tr>
+          </thead>
+          <tbody id="courseTableBody">
+            <!-- Populated from the JavaScript course array -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="glass info-card">
+        <span class="card-icon">01</span>
+        <h3>Registration Instructions</h3>
+        <ol>
+          <li>Enter your valid register number and full name.</li>
+          <li>Use a valid university/student email address.</li>
+          <li>Select your department and current semester.</li>
+          <li>Choose at least one course before submitting.</li>
+          <li>Review the generated summary before finalizing.</li>
+        </ol>
+      </article>
+
+      <article class="glass info-card">
+        <span class="card-icon">02</span>
+        <h3>Eligibility</h3>
+        <ul>
+          <li>Students must provide all mandatory details.</li>
+          <li>Semester must be between 1 and 8.</li>
+          <li>Course selection must contain at least one subject.</li>
+          <li>Information is validated in the browser.</li>
+        </ul>
+        <a class="text-link" href="#registration">Check registration form →</a>
+      </article>
+    </section>
+
+    <section id="registration" class="section registration-layout">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">STEP 01 • STUDENT DETAILS</span>
+          <h2>Register for Courses</h2>
+        </div>
+      </div>
+
+      <div class="registration-grid">
+        <form id="registrationForm" class="glass form-card" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="registerNumber">Register Number <span>*</span></label>
+              <input id="registerNumber" name="registerNumber" type="text"
+                     placeholder="e.g. 24IT001" required>
+              <small class="error" id="registerNumberError"></small>
+            </div>
+            <div class="field">
+              <label for="studentName">Student Name <span>*</span></label>
+              <input id="studentName" name="studentName" type="text"
+                     placeholder="Enter your full name" required>
+              <small class="error" id="studentNameError"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email <span>*</span></label>
+              <input id="email" name="email" type="email"
+                     placeholder="student@university.edu" required>
+              <small class="error" id="emailError"></small>
+            </div>
+            <div class="field">
+              <label for="department">Department <span>*</span></label>
+              <select id="department" name="department" required>
+                <option value="">Select department</option>
+                <option>Information Technology</option>
+                <option>Computer Science and Engineering</option>
+                <option>Electronics and Communication Engineering</option>
+                <option>Electrical and Electronics Engineering</option>
+                <option>Mechanical Engineering</option>
+              </select>
+              <small class="error" id="departmentError"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="semester">Semester <span>*</span></label>
+            <select id="semester" name="semester" required>
+              <option value="">Select semester</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+            <small class="error" id="semesterError"></small>
+          </div>
+
+          <fieldset class="course-picker">
+            <legend>Course Selection <span>*</span></legend>
+            <p class="helper">Select one or more courses. Credits are calculated automatically.</p>
+            <div id="courseOptions" class="course-options">
+              <!-- Generated from the JavaScript course array -->
+            </div>
+            <small class="error" id="coursesError"></small>
+          </fieldset>
+
+          <div class="selection-total glass">
+            <span>Current selection</span>
+            <strong><span id="selectedCount">0</span> courses · <span id="selectedCredits">0</span> credits</strong>
+          </div>
+
+          <button class="button primary submit-button" type="submit">Generate Registration Summary</button>
+          <p class="form-note">* All fields are mandatory.</p>
+        </form>
+
+        <aside id="summaryPanel" class="glass summary-card" aria-live="polite">
+          <div class="summary-empty" id="summaryEmpty">
+            <span class="summary-icon">✓</span>
+            <h3>Registration Summary</h3>
+            <p>Complete the form and submit it to generate your summary here.</p>
+          </div>
+
+          <div id="summaryContent" class="hidden">
+            <span class="eyebrow">STEP 02 • CONFIRMATION</span>
+            <h3>Registration Summary</h3>
+
+            <div class="summary-student">
+              <div>
+                <small>Student</small>
+                <strong id="summaryName">—</strong>
+              </div>
+              <div>
+                <small>Register Number</small>
+                <strong id="summaryRegister">—</strong>
+              </div>
+              <div>
+                <small>Department</small>
+                <strong id="summaryDepartment">—</strong>
+              </div>
+            </div>
+
+            <h4>Selected Courses</h4>
+            <ul id="summaryCourses" class="summary-courses"></ul>
+
+            <div class="credit-total">
+              <span>Total Credits</span>
+              <strong id="summaryCredits">0</strong>
+            </div>
+            <p class="success-message">Registration details validated successfully.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact" class="contact glass">
+      <div>
+        <span class="eyebrow">GET IN TOUCH</span>
+        <h2>Contact the Academic Office</h2>
+        <p>For registration assistance, contact the university academic office.</p>
+      </div>
+      <div class="contact-details">
+        <a href="mailto:academic@university.edu">academic@university.edu</a>
+        <a href="tel:+911234567890">+91 12345 67890</a>
+        <span>Academic Block, University Campus</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 University Course Registration Portal</span>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
