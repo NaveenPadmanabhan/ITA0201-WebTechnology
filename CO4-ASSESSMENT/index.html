@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XPath Course Browser</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap');
+:root{--paper:#f5e8c7;--paper2:#ead8ad;--ink:#33241a;--brown:#694329;--red:#873c2e;--gold:#b68a4d;--line:#9a7749}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#d5bf91;color:var(--ink);font-family:'Libre Baskerville',Georgia,serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#5d4025 .7px,transparent .7px);background-size:7px 7px}
+.shell{width:min(1100px,94%);margin:32px auto;padding:28px;background:var(--paper);border:4px double var(--brown);box-shadow:11px 11px 0 #a78a5d}
+header{border-bottom:3px solid var(--brown);padding-bottom:20px}
+.kicker{font:500 12px 'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+h1{font-size:clamp(30px,5vw,52px);line-height:1;margin:9px 0;text-transform:uppercase}
+.subtitle{line-height:1.55;max-width:800px}
+.badge{display:inline-block;margin-top:14px;padding:7px 11px;border:2px solid var(--red);color:var(--red);font:500 11px 'DM Mono',monospace;transform:rotate(-2deg)}
+.panel{margin-top:24px;border:1px solid var(--line);padding:20px;background:#f8edcf;box-shadow:4px 4px 0 #c5aa79}
+label{display:block;font:500 12px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.query-row{display:flex;gap:10px}
+input{flex:1;min-width:0;padding:14px;border:2px solid var(--brown);background:#fff7df;color:var(--ink);font:14px 'DM Mono',monospace;outline:none}
+input:focus{box-shadow:inset 0 0 0 2px var(--gold)}
+button{padding:13px 20px;border:2px solid var(--brown);background:var(--brown);color:var(--paper);font:500 12px 'DM Mono',monospace;cursor:pointer;text-transform:uppercase}
+button:hover{background:var(--red)}
+.examples{margin-top:15px}
+.examples-title{font:500 11px 'DM Mono',monospace;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{padding:8px 10px;border:1px solid var(--line);background:var(--paper2);cursor:pointer;font:12px 'DM Mono',monospace}
+.chip:hover{background:#dcc492}
+.status{margin-top:18px;padding:11px 13px;border-left:5px solid var(--gold);background:var(--paper2);font:12px 'DM Mono',monospace}
+.error{border-left-color:var(--red);color:var(--red)}
+.results{margin-top:24px}
+.results-head{display:flex;justify-content:space-between;gap:12px;align-items:end;border-bottom:2px solid var(--brown);padding-bottom:8px}
+h2{margin:0;font-size:22px;text-transform:uppercase}
+.count{font:11px 'DM Mono',monospace}
+.result-box{margin-top:12px}
+.card{border:1px solid var(--line);background:#f9efd4;margin-bottom:12px;padding:16px}
+.course-title{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px}
+.course-title strong{font-size:18px}
+.id{font:11px 'DM Mono',monospace;color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.field{background:var(--paper2);padding:9px;border:1px solid #b39464}
+.field b{display:block;font:10px 'DM Mono',monospace;text-transform:uppercase;margin-bottom:4px}
+.field span{font-size:13px}
+.value{font-family:'DM Mono',monospace;white-space:pre-wrap;word-break:break-word;background:#fff7df;border:1px solid var(--line);padding:14px}
+.empty{text-align:center;padding:35px;border:1px dashed var(--line);font-style:italic}
+footer{margin-top:26px;border-top:2px solid var(--brown);padding-top:13px;text-align:center;font:10px 'DM Mono',monospace}
+@media(max-width:760px){.query-row{flex-direction:column}.grid{grid-template-columns:repeat(2,1fr)}.course-title{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+<div class="kicker">Web Technology · Unit IV · Data Interpretation</div>
+<h1>XPath Browser</h1>
+<div class="subtitle">Manually query the university XML dataset. Enter an XPath expression below and only the matching data will appear.</div>
+<div class="badge">NO AUTO-DISPLAY · QUERY REQUIRED</div>
+</header>
+
+<div class="panel">
+<label for="xpath">Enter XPath Expression</label>
+<div class="query-row">
+<input id="xpath" type="text" placeholder="/courses/course[students &gt; 50]" autocomplete="off">
+<button onclick="runXPath()">Run Query</button>
+</div>
+<div class="examples">
+<div class="examples-title">Assessment XPath examples — click to load, then run</div>
+<div class="chips">
+<div class="chip" data-xpath="/courses/course">All courses</div>
+<div class="chip" data-xpath="/courses/course/name">Course names</div>
+<div class="chip" data-xpath="/courses/course[students &gt; 50]">Students &gt; 50</div>
+<div class="chip" data-xpath="/courses/course[credits = 4]">4 credits</div>
+<div class="chip" data-xpath="/courses/course[type = 'Theory']">Theory</div>
+<div class="chip" data-xpath="/courses/course[type = 'Theory' and students &gt; 50]/name">Theory &amp; &gt;50</div>
+<div class="chip" data-xpath="/courses/course[credits &gt;= 4]/faculty">Faculty ≥4 credits</div>
+<div class="chip" data-xpath="/courses/course[@id = 'C104']">Course C104</div>
+<div class="chip" data-xpath="/courses/course[1]">First course</div>
+<div class="chip" data-xpath="/courses/course[last()]">Last course</div>
+</div>
+</div>
+<div id="status" class="status">Waiting for an XPath query…</div>
+</div>
+
+<section class="results">
+<div class="results-head"><h2>Query Results</h2><div id="count" class="count">0 results</div></div>
+<div id="results" class="result-box">
+<div class="empty">Enter an XPath expression and press “Run Query”.<br>No course data is displayed automatically.</div>
+</div>
+</section>
+
+<footer>UNIVERSITY COURSE ARCHIVE · XML + XPATH · RETRO EDITION</footer>
+</div>
+
+<script>
+const xmlText = `<?xml version="1.0" encoding="UTF-8"?>
+<courses>
+  <course id="C101">
+    <code>WEB301</code>
+    <name>Web Technology</name>
+    <faculty>Dr. Arun</faculty>
+    <students>58</students>
+    <credits>4</credits>
+    <type>Theory</type>
+  </course>
+  <course id="C102">
+    <code>AI302</code>
+    <name>Artificial Intelligence</name>
+    <faculty>Dr. Meena</faculty>
+    <students>72</students>
+    <credits>4</credits>
+    <type>Theory</type>
+  </course>
+  <course id="C103">
+    <code>WEB303</code>
+    <name>Web Technology Laboratory</name>
+    <faculty>Dr. Ravi</faculty>
+    <students>36</students>
+    <credits>2</credits>
+    <type>Practical</type>
+  </course>
+  <course id="C104">
+    <code>ML304</code>
+    <name>Machine Learning</name>
+    <faculty>Dr. Priya</faculty>
+    <students>64</students>
+    <credits>4</credits>
+    <type>Theory</type>
+  </course>
+  <course id="C105">
+    <code>DB305</code>
+    <name>Database Systems</name>
+    <faculty>Dr. Kumar</faculty>
+    <students>42</students>
+    <credits>3</credits>
+    <type>Theory</type>
+  </course>
+</courses>
+`;
+
+let xmlDoc;
+try {
+  xmlDoc = new DOMParser().parseFromString(xmlText, "application/xml");
+} catch(e) {}
+
+const input = document.getElementById("xpath");
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    input.value = chip.dataset.xpath;
+    input.focus();
+  });
+});
+input.addEventListener("keydown", e => { if(e.key === "Enter") runXPath(); });
+
+function runXPath(){
+  const expr = input.value.trim();
+  const status = document.getElementById("status");
+  const results = document.getElementById("results");
+  const count = document.getElementById("count");
+  if(!expr){
+    status.className = "status error";
+    status.textContent = "Please enter an XPath expression.";
+    results.innerHTML = '<div class="empty">No query entered.</div>';
+    count.textContent = "0 results";
+    return;
+  }
+  try{
+    const snapshot = xmlDoc.evaluate(expr, xmlDoc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    const nodes = [];
+    for(let i=0;i<snapshot.snapshotLength;i++) nodes.push(snapshot.snapshotItem(i));
+    status.className = "status";
+    status.textContent = "Query executed successfully: " + expr;
+    count.textContent = nodes.length + (nodes.length === 1 ? " result" : " results");
+    render(nodes);
+  }catch(err){
+    status.className = "status error";
+    status.textContent = "Invalid XPath: " + err.message;
+    results.innerHTML = '<div class="empty">Fix the XPath expression and run the query again.</div>';
+    count.textContent = "0 results";
+  }
+}
+
+function render(nodes){
+  const results = document.getElementById("results");
+  if(!nodes.length){
+    results.innerHTML = '<div class="empty">No matching data found for this XPath expression.</div>';
+    return;
+  }
+  results.innerHTML = "";
+  nodes.forEach((node, i) => {
+    if(node.nodeType === Node.ELEMENT_NODE && node.nodeName === "course"){
+      const get = tag => node.getElementsByTagName(tag)[0]?.textContent || "";
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="course-title">
+          <strong>${escapeHTML(get("name"))}</strong>
+          <span class="id">ID: ${escapeHTML(node.getAttribute("id") || "")}</span>
+        </div>
+        <div class="grid">
+          <div class="field"><b>Code</b><span>${escapeHTML(get("code"))}</span></div>
+          <div class="field"><b>Faculty</b><span>${escapeHTML(get("faculty"))}</span></div>
+          <div class="field"><b>Students</b><span>${escapeHTML(get("students"))}</span></div>
+          <div class="field"><b>Credits</b><span>${escapeHTML(get("credits"))}</span></div>
+          <div class="field"><b>Type</b><span>${escapeHTML(get("type"))}</span></div>
+        </div>`;
+      results.appendChild(card);
+    } else {
+      const box = document.createElement("div");
+      box.className = "value";
+      box.textContent = node.nodeType === Node.ATTRIBUTE_NODE ? node.value : node.textContent.trim();
+      results.appendChild(box);
+    }
+  });
+}
+
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
+</script>
+</body>
+</html>
