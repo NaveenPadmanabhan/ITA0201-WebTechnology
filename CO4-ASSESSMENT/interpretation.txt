@@ -1,0 +1,15 @@
+QUESTION 1 — XML STRUCTURE
+
+a. Root element: courses
+b. Repeating record element: course
+c. Unique identifier: id attribute
+d. Numeric elements: students and credits
+e. The XML is structurally well-formed because it has one root element, properly nested/closed elements, and valid attribute syntax.
+
+QUESTION 4 — INTERPRETATION
+
+a. Highest enrollment: Artificial Intelligence (AI302) — 72
+b. Lowest enrollment: Web Technology Laboratory (WEB303) — 36
+c. Theory courses: 4
+d. Exactly 4 credits: Web Technology, Artificial Intelligence, Machine Learning
+e. Additional support (>60 students): Artificial Intelligence and Machine Learning

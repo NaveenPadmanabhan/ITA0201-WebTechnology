@@ -1,0 +1,12 @@
+QUESTION 3 — XSLT
+
+transform.xsl:
+- Outputs HTML.
+- Displays Course Code, Course Name, Faculty, Students, Credits, Type.
+- Filters with students > 40.
+- Sorts students descending.
+- Uses the heading High Enrollment Courses.
+- Uses an XPath condition inside xsl:for-each.
+
+IMPORTANT:
+The interactive index.html is intentionally different from the XSLT output: it is a manual XPath query interface. It does not automatically display all courses.

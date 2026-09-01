@@ -1,0 +1,12 @@
+QUESTION 2 — XPath ANSWERS
+
+a. /courses/course
+b. /courses/course/name
+c. /courses/course[students > 50]
+d. /courses/course[credits = 4]
+e. /courses/course[type = 'Theory']
+f. /courses/course[type = 'Theory' and students > 50]/name
+g. /courses/course[credits >= 4]/faculty
+h. /courses/course[@id = 'C104']
+i. /courses/course[1]
+j. /courses/course[last()]
