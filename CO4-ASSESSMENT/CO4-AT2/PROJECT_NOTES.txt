@@ -1,0 +1,3 @@
+Modern UI version created from the uploaded Web Technology Unit IV Assessment II requirements.
+VS Code workflow: Java + Maven + Apache Tomcat 10+.
+Eclipse is not required.
